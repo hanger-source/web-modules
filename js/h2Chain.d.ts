@@ -22,14 +22,6 @@ export type ObservedDomElementTarget = {
 export type ObservedDomElementsTarget = {
     target: DomElement[];
 };
-type FindElementByTextParams = {
-    selector: string;
-    textContent: string;
-    docRoot?: Document;
-};
-export declare const domHelper: {
-    findElementByText: ({ selector, textContent, docRoot }: FindElementByTextParams) => HTMLElement | null;
-};
 export type H2Chain = {
     findOne(options: FindOptions): Promise<ObservedDomElementTarget>;
     findAll(options: FindOptions): Promise<ObservedDomElementsTarget>;

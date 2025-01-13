@@ -1,22 +1,4 @@
-const util = {
-    hashCode: (str) => {
-        let hash = 0;
-        for (let i = 0; i < str.length; i++) {
-            const char = str.charCodeAt(i); // 获取字符的 Unicode 编码
-            hash = (hash << 5) - hash + char; // 左移并加上当前字符的值
-            hash |= 0; // 转为 32 位整数
-        }
-        return hash;
-    },
-};
-export const domHelper = {
-    findElementByText: ({ selector, textContent, docRoot = document }) => {
-        // 查询所有符合选择器的元素
-        const elements = docRoot.querySelectorAll(selector);
-        // 查找第一个文本内容匹配的元素并返回，若没有找到则返回 null
-        return (Array.from(elements).find((el) => el.textContent?.trim() === textContent) || null);
-    },
-};
+import { util } from "./util";
 const h2 = {
     observeDOMChanges: (() => {
         const observersMap = new WeakMap(); // WeakMap用于存储每个文档的 Observer 实例及其队列

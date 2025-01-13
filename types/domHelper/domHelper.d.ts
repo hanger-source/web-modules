@@ -1,4 +1,4 @@
-type FindElementByTextParams = {
+export type FindElementByTextParams = {
     selector: string;
     textContent: string;
     docRoot?: Document;
@@ -6,4 +6,3 @@ type FindElementByTextParams = {
 export declare const domHelper: {
     findElementByText: ({ selector, textContent, docRoot }: FindElementByTextParams) => HTMLElement | null;
 };
-export {};

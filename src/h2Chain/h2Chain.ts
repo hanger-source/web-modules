@@ -1,4 +1,4 @@
-import {util} from "../util";
+import {util} from "../util/index.js";
 
 export {};  // 保证这是一个模块
 type DomElement = HTMLElement | Document;

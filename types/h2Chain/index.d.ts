@@ -1,1 +1,1 @@
-export * from './h2Chain';
+export * from './h2Chain.js';

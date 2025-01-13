@@ -1,1 +1,1 @@
-export * from './domHelper';
+export * from './domHelper.js';

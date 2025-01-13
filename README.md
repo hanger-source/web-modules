@@ -1,2 +1,2 @@
-# js-repo
-js-repo
+# web-modules
+web-modules

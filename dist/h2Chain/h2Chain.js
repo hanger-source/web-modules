@@ -1,4 +1,4 @@
-import { util } from "./util";
+import { util } from "../util/util";
 const h2 = {
     observeDOMChanges: (() => {
         const observersMap = new WeakMap(); // WeakMap用于存储每个文档的 Observer 实例及其队列

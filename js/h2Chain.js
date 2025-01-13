@@ -1,12 +1,3 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 const util = {
     hashCode: (str) => {
         let hash = 0;
@@ -23,7 +14,7 @@ export const domHelper = {
         // 查询所有符合选择器的元素
         const elements = docRoot.querySelectorAll(selector);
         // 查找第一个文本内容匹配的元素并返回，若没有找到则返回 null
-        return (Array.from(elements).find((el) => { var _a; return ((_a = el.textContent) === null || _a === void 0 ? void 0 : _a.trim()) === textContent; }) || null);
+        return (Array.from(elements).find((el) => el.textContent?.trim() === textContent) || null);
     },
 };
 const h2 = {
@@ -159,7 +150,7 @@ export const h2c = {
                 return { target: queriedDoc.querySelector(selector) };
             }
             else {
-                const target = Array.from(queriedDoc.querySelectorAll(selector)).find((el) => { var _a; return ((_a = el.textContent) === null || _a === void 0 ? void 0 : _a.trim()) === textContent; });
+                const target = Array.from(queriedDoc.querySelectorAll(selector)).find((el) => el.textContent?.trim() === textContent);
                 return { target };
             }
         };
@@ -170,47 +161,41 @@ export const h2c = {
         const selectLocator = () => {
             let elements = Array.from(queriedDoc.querySelectorAll(selector));
             if (textContent) {
-                elements = elements.filter(el => { var _a; return ((_a = el.textContent) === null || _a === void 0 ? void 0 : _a.trim()) === textContent; });
+                elements = elements.filter(el => el.textContent?.trim() === textContent);
             }
-            const target = (elements === null || elements === void 0 ? void 0 : elements.length) > 0 ? elements : null;
+            const target = elements?.length > 0 ? elements : null;
             return { target };
         };
         return h2.observeTarget(observedDoc, selectLocator, timeout);
     },
     // 点击目标
-    clickOne(options) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const findOptions = options;
-            let found = yield this.findOne(findOptions);
-            const { target } = found;
-            target.click();
-            return found;
-        });
+    async clickOne(options) {
+        const findOptions = options;
+        let found = await this.findOne(findOptions);
+        const { target } = found;
+        target.click();
+        return found;
     },
-    clickAll(options) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const findOptions = options;
-            let found = yield this.findAll(findOptions);
-            const { target } = found;
-            target.forEach((el) => {
-                el.click();
-            });
-            return found;
+    async clickAll(options) {
+        const findOptions = options;
+        let found = await this.findAll(findOptions);
+        const { target } = found;
+        target.forEach((el) => {
+            el.click();
         });
+        return found;
     },
     // 输入内容到文本框
-    input(options) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const findOptions = options;
-            let found = yield this.findOne(findOptions);
-            const { target } = found;
-            if (target.value !== options.textInput) {
-                target.focus();
-                target.setRangeText(options.textInput);
-                target.dispatchEvent(new Event("input", { bubbles: true }));
-                target.dispatchEvent(new Event("change", { bubbles: true }));
-            }
-            return found;
-        });
+    async input(options) {
+        const findOptions = options;
+        let found = await this.findOne(findOptions);
+        const { target } = found;
+        if (target.value !== options.textInput) {
+            target.focus();
+            target.setRangeText(options.textInput);
+            target.dispatchEvent(new Event("input", { bubbles: true }));
+            target.dispatchEvent(new Event("change", { bubbles: true }));
+        }
+        return found;
     },
 };

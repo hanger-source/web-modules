@@ -1,4 +1,4 @@
-import { h } from "./index-chunk.js";
+import { h } from "./chunk/BCTKCpMB.js";
 export {
   h as h2c
 };

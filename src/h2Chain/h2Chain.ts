@@ -1,4 +1,5 @@
 import {util} from "../util/index.js";
+import {throttle} from "lodash-es";
 
 export {};  // 保证这是一个模块
 type DomElement = HTMLElement | Document;
@@ -134,33 +135,7 @@ const h2 = {
 
     // 观察DOM变化函数
     throttleWithTail: (delegateFunc: DOMChangeCallback, limit: number): DOMChangeCallback => {
-        let lastCall = 0; // 上次调用的时间戳
-        let timeout: ReturnType<typeof setTimeout> | null = null; // 定时器 ID
-        let pending = false; // 是否有等待执行的尾调用
-        return (params: {
-            mutations: MutationRecord[]; // 观察到的 DOM 变更记录
-            observer: MutationObserver; // 当前的 MutationObserver 实例
-            disconnect: DisconnectCallback;     // 用于断开观察的函数
-        }) => {
-            const now = Date.now();
-            if (now - lastCall >= limit) {
-                // 如果超过限流时间，立即执行函数
-                lastCall = now;
-                delegateFunc(params);
-                if (timeout) {
-                    clearTimeout(timeout);
-                }
-                pending = false;
-            } else if (!pending) {
-                // 如果尚未计划尾调用，则设置一个定时器
-                pending = true;
-                timeout = setTimeout(() => {
-                    lastCall = Date.now();
-                    delegateFunc(params);
-                    pending = false; // 尾调用完成后重置标志位
-                }, limit - (now - lastCall));
-            }
-        };
+        return throttle(delegateFunc, limit);
     }, observeTarget: (
         observedDoc: NullableObserverDom,
         locateTargetFunc: TargetLocator,

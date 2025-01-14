@@ -15,7 +15,8 @@ type ObservedOptions = {
 type SelectorOptions = ({ selector: string, textContent?: string} & ObservedOptions)
 type FindOptions = SelectorOptions;
 type ClickOptions = SelectorOptions;
-type InputOptions = ({ textInput: string } & SelectorOptions);
+type InputOptions = ({ textInput: string, mode?:InputMode } & SelectorOptions);
+type InputMode = 'overwrite' | 'append'
 
 type TargetLocator = () => ObservedTarget;
 
@@ -230,15 +231,18 @@ export const h2c:H2Chain = {
 
     // 输入内容到文本框
     async input(options: InputOptions): Promise<ObservedDomElementTarget> {
-        const findOptions: FindOptions = options;
+        const findOptions: FindOptions ={ mode: options.mode ?? 'overwrite', ...options };
         let found = await this.findOne(findOptions);
         const { target } = found as Inputted;
-        if (target.value !== options.textInput) {
-            target.focus();
-            // target.setRangeText(options.textInput);
-            target.dispatchEvent(new Event("input", { bubbles: true }));
-            target.dispatchEvent(new Event("change", { bubbles: true }));
+        if (options.mode === "append") {
+            target.value += options.textInput;
+        } else {
+            target.value = options.textInput;
         }
+        target.focus();
+        // target.setRangeText(options.textInput);
+        target.dispatchEvent(new Event("input", { bubbles: true }));
+        target.dispatchEvent(new Event("change", { bubbles: true }));
         return found;
     },
 };

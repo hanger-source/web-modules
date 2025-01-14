@@ -144,14 +144,17 @@ const h2c = {
   },
   // 输入内容到文本框
   async input(options) {
-    const findOptions = options;
+    const findOptions = { mode: options.mode ?? "overwrite", ...options };
     let found = await this.findOne(findOptions);
     const { target } = found;
-    if (target.value !== options.textInput) {
-      target.focus();
-      target.dispatchEvent(new Event("input", { bubbles: true }));
-      target.dispatchEvent(new Event("change", { bubbles: true }));
+    if (options.mode === "append") {
+      target.value += options.textInput;
+    } else {
+      target.value = options.textInput;
     }
+    target.focus();
+    target.dispatchEvent(new Event("input", { bubbles: true }));
+    target.dispatchEvent(new Event("change", { bubbles: true }));
     return found;
   }
 };

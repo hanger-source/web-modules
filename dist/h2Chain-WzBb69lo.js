@@ -1,5 +1,5 @@
 import { util } from "./util.js";
-import { throttle } from "https://cdn.jsdelivr.net/npm/lodash-es/lodash.min.js";
+import throttle from "https://cdn.jsdelivr.net/npm/lodash/throttle.min.js";
 const h2 = {
   observeDOMChanges: /* @__PURE__ */ (() => {
     const observersMap = /* @__PURE__ */ new WeakMap();

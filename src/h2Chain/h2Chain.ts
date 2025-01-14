@@ -1,5 +1,5 @@
 import {util} from "../util/index.js";
-import {throttle} from "lodash-es";
+import throttle from "lodash-es/throttle";
 
 export {};  // 保证这是一个模块
 type DomElement = HTMLElement | Document;

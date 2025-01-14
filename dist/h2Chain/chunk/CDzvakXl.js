@@ -149,7 +149,6 @@ const h2c = {
     const { target } = found;
     if (target.value !== options.textInput) {
       target.focus();
-      target.setRangeText(options.textInput);
       target.dispatchEvent(new Event("input", { bubbles: true }));
       target.dispatchEvent(new Event("change", { bubbles: true }));
     }

@@ -1,8 +1,8 @@
-import { h2c } from "./h2Chain.js";
+import { h } from "./h2Chain-cbg9n42Y.js";
 import { domHelper } from "./domHelper.js";
 import { util } from "./util.js";
 export {
   domHelper,
-  h2c,
+  h as h2c,
   util
 };

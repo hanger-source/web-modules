@@ -235,7 +235,7 @@ export const h2c:H2Chain = {
         const { target } = found as Inputted;
         if (target.value !== options.textInput) {
             target.focus();
-            target.setRangeText(options.textInput);
+            // target.setRangeText(options.textInput);
             target.dispatchEvent(new Event("input", { bubbles: true }));
             target.dispatchEvent(new Event("change", { bubbles: true }));
         }

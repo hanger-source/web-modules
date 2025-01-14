@@ -1,4 +1,4 @@
-import { h } from "../h2Chain-DpKuGAf8.js";
+import { h } from "./index-chunk.js";
 export {
   h as h2c
 };

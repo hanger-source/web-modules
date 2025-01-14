@@ -1,4 +1,4 @@
-import { util } from "./util/index.js";
+import { util } from "../util/index.js";
 import throttle from "https://cdn.jsdelivr.net/npm/lodash-es/throttle.min.js";
 const h2 = {
   observeDOMChanges: /* @__PURE__ */ (() => {

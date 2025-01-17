@@ -1,3 +1,3 @@
-export * from './h2Chain/index.js';
-export * from './domHelper/index.js';
+export * from './h2-chain/index.js';
+export * from './dom-helper/index.js';
 export * from './util/index.js';

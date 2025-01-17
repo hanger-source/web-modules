@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",       // 输出目录为 `src/js`
+    "declaration": true,                    // 生成类型声明文件
+    "declarationDir": "./types", // 类型声明文件输出目录
+    "module": "ESNext",                  // 使用 ES 模块
+    "target": "ESNext",                     // 编译为 ES6（现代浏览器广泛支持）
+    "sourceMap": false,            // 不生成 Source Map
+    "esModuleInterop": true,        // 支持 ES 模块互操作
+    "baseUrl": ".",
+  },
+  "include": [
+    "src"
+  ]
+}

@@ -1,5 +1,4 @@
 import { defineConfig } from 'vite';
-import dts from 'vite-plugin-dts';
 import terser from '@rollup/plugin-terser';
 
 
@@ -42,12 +41,7 @@ export default defineConfig({
         format: 'es',
         paths: outputPath,
       }],
-      plugins: [
-        // dts({
-        //   outDir: './dist/@types', // 类型文件输出目录
-        //   entryRoot: './src', // 类型文件入口目录
-        // }),
-      ]
+      plugins: []
     },
-  },
+  }
 });

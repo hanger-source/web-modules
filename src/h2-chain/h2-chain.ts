@@ -168,7 +168,8 @@ export const h2c:H2Chain = {
 
     // 输入内容到文本框
     async input(options: InputOptions): Promise<ObservedDomElementTarget> {
-        const findOptions: FindOptions ={ mode: options.mode ?? 'overwrite', ...options };
+        const findOptions: FindOptions = options;
+        options = {mode: options.mode ?? 'overwrite', ...options}
         let found = await this.findOne(findOptions);
         const { target } = found as Inputted;
         if (options.mode === "append") {
